@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 from sklearn.model_selection import train_test_split
+import nltk
 
 # practicing "train_test_split"
 
@@ -35,8 +36,22 @@ parameters:
 """
 
 # importing file
-file_path = "/home/aaron/Downloads/NHIS_Adult_Summary_Health_Statistics.csv"
+file_path = "NHIS_Adult_Summary_Health_Statistics.csv"
 df = pd.read_csv(file_path)
+# df.drop("NaN")
 
 # properly loaded, now how will we decide on what to "clean"
-print(df.head())
+description = df['Description']
+
+'''
+To reduce string processing overhead, we can just reduce the description dataset prior to string parsing.
+We'll first remove all "NaN" columns.
+'''
+
+for x in description:
+    if(x == "nan".lower()):
+        description.drop(x)
+
+description_str = description.to_string()
+
+print(description_str)
