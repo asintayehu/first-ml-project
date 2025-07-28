@@ -1,12 +1,12 @@
 import pandas as pd
 import numpy as np
 from sklearn.model_selection import train_test_split
+from sklearn.feature_extraction.text import TfidfVectorizer
 import nltk
+import re
 
-def empty_string(word):
-    if word == "" or word == '' or word == " " or word == ' ':
-        return True
-    return False
+pd.set_option('display.max_colwidth', None)
+
 
 # practicing "train_test_split"
 
@@ -53,8 +53,12 @@ We'll first remove all "NaN" columns.
 '''
 description = description.dropna().to_string()
 
-description_list = description.strip().split(" ")
+description_list = description.strip().split("\n")
+# pattern = r" that they had\s+(.+)"
 
-description_list = [word for word in description_list if word]
+# results = [match for text in description_list for match in re.findall(pattern, text, re.IGNORECASE)]
+# print(results)
 
-print(description_list)
+print(description_list[0])
+
+pattern = r"that they had\s+(.+?)\."
