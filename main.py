@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 from sklearn.model_selection import train_test_split
+import nltk
 
 # practicing "train_test_split"
 
@@ -39,4 +40,4 @@ file_path = "/home/aaron/Downloads/NHIS_Adult_Summary_Health_Statistics.csv"
 df = pd.read_csv(file_path)
 
 # properly loaded, now how will we decide on what to "clean"
-df.head()
+print(df.head())
