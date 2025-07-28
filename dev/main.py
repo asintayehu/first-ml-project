@@ -3,6 +3,11 @@ import numpy as np
 from sklearn.model_selection import train_test_split
 import nltk
 
+def empty_string(word):
+    if word == "" or word == '' or word == " " or word == ' ':
+        return True
+    return False
+
 # practicing "train_test_split"
 
 """
@@ -46,4 +51,10 @@ description = df['Description']
 To reduce string processing overhead, we can just reduce the description dataset prior to string parsing.
 We'll first remove all "NaN" columns.
 '''
-description = description.dropna()
+description = description.dropna().to_string()
+
+description_list = description.strip().split(" ")
+
+description_list = [word for word in description_list if word]
+
+print(description_list)
