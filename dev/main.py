@@ -59,6 +59,19 @@ description_list = description.strip().split("\n")
 # results = [match for text in description_list for match in re.findall(pattern, text, re.IGNORECASE)]
 # print(results)
 
-print(description_list[0])
+# print(description_list[4152].strip())
+ailments = {}
+for text in description_list:
+    cleaned_text = re.sub(r'^\d+\s+', '', text)
+    pattern = r"that they had\s+(.+?)\."
+    matches = re.findall(pattern, cleaned_text, re.IGNORECASE)
+    if matches:
+        if matches[0] in ailments:
+            print(ailments.get(matches[0]))
+        else:
+            ailments.update({matches[0], 1})
+    else:
+        continue
+    
 
-pattern = r"that they had\s+(.+?)\."
+print(ailments)
